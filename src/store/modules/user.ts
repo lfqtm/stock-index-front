@@ -22,7 +22,8 @@ export const useUserStore = defineStore("user", () => {
       loginApi({
         username: loginData.username,
         password: loginData.password,
-        code: loginData.code
+        code: loginData.code,
+        rkey: loginData.rkey
       })
         .then((res) => {
           setToken(res.data.token)
@@ -35,9 +36,9 @@ export const useUserStore = defineStore("user", () => {
     })
   }
   /** 获取用户详情 */
-  const getInfo = () => {
+  const getInfo = (id: string) => {
     return new Promise((resolve, reject) => {
-      getUserInfoApi()
+      getUserInfoApi(id)
         .then((res) => {
           roles.value = res.data.roles
           username.value = res.data.username

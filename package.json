@@ -1,7 +1,7 @@
 {
-  "name": "v3-admin-vite",
+  "name": "stock-index",
   "version": "3.3.2",
-  "description": "一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus、Pinia 和 Vite 等主流技术.",
+  "description": "今日指数项目前端",
   "author": {
     "name": "pany",
     "email": "939630029@qq.com",
@@ -20,7 +20,8 @@
     "lint:eslint": "eslint --cache --max-warnings 0 \"src/**/*.{vue,js,ts,tsx}\" --fix",
     "lint:prettier": "prettier --write  \"src/**/*.{js,ts,json,tsx,css,less,scss,vue,html,md}\"",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commit": "cz"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
@@ -53,6 +54,8 @@
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.2",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.33.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.9.0",
@@ -97,5 +100,10 @@
     "ts",
     "typescript"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }

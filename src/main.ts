@@ -27,3 +27,18 @@ loadSvg(app)
 loadDirectives(app)
 
 app.use(store).use(router).mount("#app")
+
+console.log("main.ts")
+
+// import { request } from "@/utils/service"
+
+// export function getApi() {
+//   return request<LoginCodeResponseData>({
+//     url: "test",
+//     method: "get"
+//   })
+// }
+
+// getApi().then((res) => {
+//   console.log(res)
+// })

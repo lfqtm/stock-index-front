@@ -17,15 +17,16 @@ const codeUrl = ref("")
 /** 登录表单数据 */
 const loginForm: ILoginRequestData = reactive({
   username: "admin",
-  password: "12345678",
-  code: ""
+  password: "123456",
+  code: "",
+  rkey: ""
 })
 /** 登录表单校验规则 */
 const loginFormRules: FormRules = {
   username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
   password: [
     { required: true, message: "请输入密码", trigger: "blur" },
-    { min: 8, max: 16, message: "长度在 8 到 16 个字符", trigger: "blur" }
+    { min: 3, max: 8, message: "长度在 8 到 16 个字符", trigger: "blur" }
   ],
   code: [{ required: true, message: "请输入验证码", trigger: "blur" }]
 }
@@ -38,7 +39,8 @@ const handleLogin = () => {
         .login({
           username: loginForm.username,
           password: loginForm.password,
-          code: loginForm.code
+          code: loginForm.code,
+          rkey: loginForm.rkey
         })
         .then(() => {
           router.push({ path: "/" })
@@ -62,7 +64,8 @@ const createCode = () => {
   // 获取验证码
   codeUrl.value = ""
   getLoginCodeApi().then((res) => {
-    codeUrl.value = res.data
+    loginForm.rkey = res.data.rkey
+    codeUrl.value = res.data.base64
   })
 }
 
@@ -101,6 +104,7 @@ createCode()
             />
           </el-form-item>
           <el-form-item prop="code">
+            <el-input v-model.trim="loginForm.rkey" style="display: none" />
             <el-input
               v-model.trim="loginForm.code"
               placeholder="验证码"
